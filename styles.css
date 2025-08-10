@@ -2,14 +2,13 @@
    Mobile-first build with Meyer reset + Typography setup
 */
 
-/* Google Fonts for all pages (so index.html & majorca.html get the fonts too) */
+/* Google Fonts for all pages */
 @import url("https://fonts.googleapis.com/css2?family=Molle:ital@1&family=Montserrat:wght@400;600&display=swap");
 
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
 */
-
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -31,14 +30,11 @@ time, mark, audio, video {
 	vertical-align: baseline;
 }
 article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-	display: block;
-}
+footer, header, hgroup, menu, nav, section { display: block; }
 body { line-height: 1; }
 ol, ul { list-style: none; }
 blockquote, q { quotes: none; }
-blockquote:before, blockquote:after,
-q:before, q:after { content: ''; content: none; }
+blockquote:before, blockquote:after, q:before, q:after { content: ''; content: none; }
 table { border-collapse: collapse; border-spacing: 0; }
 
 /* =========================
@@ -57,19 +53,16 @@ table { border-collapse: collapse; border-spacing: 0; }
   --ff-heading: "Molle", cursive;           /* h1–h3 */
   --ff-body: "Montserrat", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; /* h4, body, nav, form */
 
-  /* Type weights */
   --w-regular: 400;
   --w-semibold: 600;
 
-  /* Type sizing (mobile-first) */
-  --fs-h1: 2rem;       /* 32px */
-  --fs-h2: 1.75rem;    /* 28px */
-  --fs-h3: 1.5rem;     /* 24px */
-  --fs-h4: 1rem;       /* 16px */
-  --fs-body: 1rem;     /* 16px */
-  --fs-small: 0.875rem;/* 14px */
+  --fs-h1: 2rem;
+  --fs-h2: 1.75rem;
+  --fs-h3: 1.5rem;
+  --fs-h4: 1rem;
+  --fs-body: 1rem;
+  --fs-small: 0.875rem;
 
-  /* Spacing */
   --space-1: 0.25rem;  
   --space-2: 0.5rem;   
   --space-3: 0.75rem;  
@@ -79,7 +72,6 @@ table { border-collapse: collapse; border-spacing: 0; }
   --radius: 10px;
   --shadow: 0 2px 8px rgba(0,0,0,.08);
 
-  /* Form */
   --field-border: 2px solid var(--purple);
   --focus-ring: 0 0 0 3px rgba(155,38,176,.25);
 }
@@ -126,20 +118,9 @@ strong, b { font-weight: var(--w-semibold); }
 em, i { font-style: italic; }
 
 q { font-style: italic; color: #333; }
-blockquote {
-  border-left: 4px solid var(--light);
-  padding-left: var(--space-3);
-  margin: var(--space-3) 0;
-  color: #333;
-}
+blockquote { border-left: 4px solid var(--light); padding-left: var(--space-3); margin: var(--space-3) 0; color: #333; }
 
-:focus-visible {
-  outline: 3px solid var(--blue);
-  outline-offset: 2px;
-}
-a { color: inherit; text-decoration: none; }
-
-/* Utility: screen-reader-only (used by Base HTML .sr-only) */
+/* Utility: screen-reader-only */
 .sr-only {
   position: absolute !important;
   width: 1px; height: 1px;
@@ -157,19 +138,11 @@ header, footer {
   margin-inline: auto;
   padding-inline: var(--space-4);
 }
-#skip {
-  position: absolute;
-  left: -9999px;
-  top: -9999px;
-}
+#skip { position: absolute; left: -9999px; top: -9999px; }
 #skip:focus {
-  left: var(--space-4);
-  top: var(--space-4);
-  background: var(--yellow);
-  color: var(--black);
-  padding: var(--space-2) var(--space-3);
-  border-radius: var(--radius);
-  z-index: 1000;
+  left: var(--space-4); top: var(--space-4);
+  background: var(--yellow); color: var(--black);
+  padding: var(--space-2) var(--space-3); border-radius: var(--radius); z-index: 1000;
 }
 
 /* =========================
@@ -179,46 +152,27 @@ header {
   padding-block: var(--space-4);
   background: linear-gradient(180deg, var(--teal) 0%, rgba(85,188,213,0.15) 100%);
 }
-#logo img { width: 120px; margin-inline: auto; }
-header h1 {
-  text-align: center;
-  margin-top: var(--space-3);
-}
-header p {
-  text-align: center;
-  margin: 0;
-  font-size: 0.95rem;
-}
+/* standardize logo sizing for headers that are not using #logo */
+header > img { width: 120px; display: block; margin: 0 auto; }
 
-/* Nav toggle */
+#logo img { width: 120px; margin-inline: auto; }
+header h1 { text-align: center; margin-top: var(--space-3); }
+header p  { text-align: center; margin: 0; font-size: 0.95rem; }
+
+/* Nav toggle (Base HTML header) */
 nav { margin-top: var(--space-4); }
 #menu-toggle label {
-  display: inline-block;
-  background: var(--yellow);
-  color: var(--black);
-  padding: var(--space-2) var(--space-4);
-  border-radius: 999px;
-  font-weight: var(--w-semibold);
-  letter-spacing: .02em;
-  text-transform: uppercase;
+  display: inline-block; background: var(--yellow); color: var(--black);
+  padding: var(--space-2) var(--space-4); border-radius: 999px;
+  font-weight: var(--w-semibold); letter-spacing: .02em; text-transform: uppercase;
   box-shadow: var(--shadow);
 }
 #menu-toggle input { position: absolute; opacity: 0; pointer-events: none; }
-#menu-toggle ul {
-  margin: var(--space-3) 0 0;
-  padding: 0;
-  display: none;
-  gap: var(--space-2);
-}
+#menu-toggle ul { margin: var(--space-3) 0 0; padding: 0; display: none; gap: var(--space-2); }
 #menu-toggle ul li a {
-  display: block;
-  padding: var(--space-3);
-  background: var(--light);
-  border-radius: var(--radius);
-  text-align: center;
-  font-weight: var(--w-semibold);
-  letter-spacing: .02em;
-  text-transform: uppercase;
+  display: block; padding: var(--space-3); background: var(--light);
+  border-radius: var(--radius); text-align: center; font-weight: var(--w-semibold);
+  letter-spacing: .02em; text-transform: uppercase;
 }
 #menu-toggle ul li.active a { background: var(--yellow); }
 #menu-toggle input:checked ~ ul { display: grid; grid-template-columns: 1fr; }
@@ -237,13 +191,7 @@ nav { margin-top: var(--space-4); }
   border-radius: var(--radius); padding: var(--space-4);
   box-shadow: var(--shadow); text-align: center;
 }
-#plan h4 {
-  color: var(--black);
-  margin-bottom: var(--space-3);
-  font-weight: var(--w-semibold);
-  letter-spacing: .01em;
-  text-transform: none; /* keep sentence case for card titles */
-}
+#plan h4 { color: var(--black); margin-bottom: var(--space-3); font-weight: var(--w-semibold); letter-spacing: .01em; }
 #plan img { width: 64px; margin: 0 auto; }
 
 /* Testimonials */
@@ -272,22 +220,13 @@ nav { margin-top: var(--space-4); }
 #contact { padding-block: var(--space-6); }
 #contact h3 { margin-bottom: var(--space-2); }
 .form-required { font-size: var(--fs-small); color: #666; }
-
 #names, #nums, #selects { display: grid; gap: var(--space-3); margin-top: var(--space-4); }
 label { font-weight: var(--w-semibold); display: block; margin-bottom: var(--space-1); }
 .required { color: var(--purple); margin-left: .25ch; }
-
-input[type="text"],
-input[type="email"],
-input[type="tel"],
-select {
-  width: 100%;
-  padding: .85rem 1rem;
-  border: var(--field-border);
-  border-radius: 6px;
-  background: var(--white);
-  font-family: var(--ff-body);
-  font-size: var(--fs-body);
+input[type="text"], input[type="email"], input[type="tel"], select {
+  width: 100%; padding: .85rem 1rem; border: var(--field-border);
+  border-radius: 6px; background: var(--white);
+  font-family: var(--ff-body); font-size: var(--fs-body);
 }
 input::placeholder { color: #888; }
 
@@ -339,8 +278,7 @@ button[type="submit"]{
   cursor: pointer;
   box-shadow: var(--shadow);
 }
-#mySubmit:focus-visible,
-button:focus-visible { box-shadow: var(--focus-ring); }
+#mySubmit:focus-visible, button:focus-visible { box-shadow: var(--focus-ring); }
 
 /* =========================
    FOOTER
@@ -362,40 +300,28 @@ footer a { text-decoration: underline; }
 @media (min-width: 420px){
   #plan > div { grid-template-columns: repeat(2, 1fr); }
 }
-
 @media (prefers-reduced-motion: reduce){
   * { animation: none !important; transition: none !important; }
 }
 
 /* ===== PATCH for index.html compatibility ===== */
-.skip-link {
-  position: absolute;
-  left: -9999px;
-  top: -9999px;
-}
+.skip-link { position: absolute; left: -9999px; top: -9999px; }
 .skip-link:focus {
-  left: var(--space-4);
-  top: var(--space-4);
-  background: var(--yellow);
-  color: var(--black);
-  padding: var(--space-2) var(--space-3);
-  border-radius: var(--radius);
-  z-index: 1000;
+  left: var(--space-4); top: var(--space-4);
+  background: var(--yellow); color: var(--black);
+  padding: var(--space-2) var(--space-3); border-radius: var(--radius); z-index: 1000;
 }
-@supports selector(header:has(#menu-toggle)) {
-  header:not(:has(#menu-toggle)) {
-    background: var(--light);
-  }
-}
+/* Inline SVG icons sizing (mobile) */
 .icon {
-  width: 56px;
-  height: 56px;
+  width: 40px;
+  height: 40px;
   display: inline-block;
   vertical-align: middle;
   stroke: currentColor;
   fill: none;
   stroke-width: 1.5;
 }
+
 main#main picture { margin-block: var(--space-3); }
 main#main dl { display: grid; gap: var(--space-3); margin-block: var(--space-4); }
 main#main dt { font-weight: var(--w-semibold); }
