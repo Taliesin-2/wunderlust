@@ -104,7 +104,7 @@ q { color: #333; }
 blockquote { border-left: 4px solid var(--light); padding-left: var(--space-3); margin: var(--space-3) 0; color: #333; }
 
 /* =========================
-   Accessibility utilities
+   Accessibility
    ========================= */
 .sr-only { position:absolute!important; width:1px!important; height:1px!important; padding:0!important; margin:-1px!important; overflow:hidden!important; clip:rect(0,0,0,0)!important; clip-path:inset(50%)!important; white-space:nowrap!important; border:0!important; }
 .skip-link { position:absolute; left:-9999px; top:-9999px; }
@@ -132,7 +132,7 @@ header p { text-align:left; margin-top:var(--space-2); font-size:1rem; max-width
 #menu-toggle input:checked ~ ul{ display:grid; gap:var(--space-2); }
 
 /* =========================
-   Images in intro
+   Images
    ========================= */
 @media (max-width:767px){
   main picture{display:block;width:100%}
@@ -176,28 +176,32 @@ main picture{margin-block:var(--space-3)}
 #about .about-dl dd::before{ content:attr(data-label); text-transform:uppercase; letter-spacing:.06em; font-weight:var(--w-semibold); margin-bottom:.05rem; }
 
 /* =========================
-   Contact (matches mock)
+   Contact — scoped to the form after #contact
    ========================= */
-#contact{ padding-block:var(--space-6); }
-#contact .form-required{ font-size:.9rem; font-style:italic; color:#666; margin-left:.5rem; }
+#contact + form{ padding-block:var(--space-6); }
+#contact + form .form-required{ font-size:.9rem; font-style:italic; color:#666; margin-left:.5rem; }
 
-/* stack fields vertically */
-#contact fieldset{ border:0; padding:0; margin:0 0 var(--space-4); display:grid; gap:var(--space-3); }
+/* fields stack */
+#contact + form fieldset{
+  border:0; padding:0; margin:0 0 var(--space-4);
+  display:grid; gap:var(--space-3);
+}
 
-#contact label{
+/* labels */
+#contact + form label{
   font-weight:var(--w-semibold);
   text-transform:uppercase;
   letter-spacing:.02em;
   margin-bottom:.35rem;
   display:block;
 }
-#contact .required{ color:var(--purple); margin-left:.25ch; }
+#contact + form .required{ color:var(--purple); margin-left:.25ch; }
 
-/* inputs/selects */
-#contact input[type="text"],
-#contact input[type="email"],
-#contact input[type="tel"],
-#contact select{
+/* text inputs + selects */
+#contact + form input[type="text"],
+#contact + form input[type="email"],
+#contact + form input[type="tel"],
+#contact + form select{
   width:100%;
   padding:.85rem 1rem;
   border:var(--field-border);
@@ -206,10 +210,10 @@ main picture{margin-block:var(--space-3)}
   font-family:var(--ff-body);
   font-size:var(--fs-body);
 }
-#contact input::placeholder{ color:#888; }
+#contact + form input::placeholder{ color:#888; }
 
-/* custom select caret (always) */
-#contact select{
+/* custom select caret */
+#contact + form select{
   appearance:none;
   background-image:
     linear-gradient(45deg, transparent 50%, var(--purple) 50%),
@@ -223,25 +227,32 @@ main picture{margin-block:var(--space-3)}
   background-repeat: no-repeat;
 }
 
-/* radios */
-#contact .radio{
-  display:flex; align-items:center; gap:.6rem;
+/* radio group — works with input + label markup */
+#contact + form input[type="radio"]{
+  position:absolute; opacity:0; width:0; height:0;
 }
-#contact .radio input{
-  position:absolute; opacity:0; inset:0; pointer-events:auto; cursor:pointer;
+#contact + form input[type="radio"] + label{
+  position:relative; padding-left:44px; margin-right:var(--space-4);
+  display:inline-flex; align-items:center; line-height:1;
 }
-#contact .radio-control{
-  width:30px; height:30px; border-radius:50%;
-  border:2px solid var(--purple); display:inline-block; position:relative;
+/* outer ring */
+#contact + form input[type="radio"] + label::before{
+  content:""; position:absolute; left:0; top:50%; transform:translateY(-50%);
+  width:28px; height:28px; border-radius:50%; border:2px solid var(--purple);
 }
-#contact .radio input:checked + .radio-control{
-  outline:6px solid rgba(155,38,176,.20);
-  background: radial-gradient(var(--purple) 0 45%, transparent 46% 100%);
+/* inner dot when checked */
+#contact + form input[type="radio"]:checked + label::after{
+  content:""; position:absolute; left:7px; top:50%; transform:translateY(-50%);
+  width:14px; height:14px; border-radius:50%; background:var(--purple);
 }
-#contact .radio-label{ font-size:var(--fs-body); }
+/* focus ring */
+#contact + form input[type="radio"]:focus-visible + label::before{
+  box-shadow:var(--focus-ring);
+}
 
-/* submit */
-#contact .btn-submit{
+/* submit button */
+#contact + form button[type="submit"],
+#contact + form input[type="submit"]{
   width:100%;
   background:var(--purple);
   color:#fff;
