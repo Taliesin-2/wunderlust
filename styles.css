@@ -50,15 +50,15 @@ table { border-collapse: collapse; border-spacing: 0; }
   --w-semibold: 600;
 
   --fs-h1: 2rem;
-  --fs-h2: 2rem;        /* “Majorca” on mobile */
+  --fs-h2: 2rem;
   --fs-h3: 1.5rem;
   --fs-h4: 1rem;
   --fs-body: 1rem;
   --fs-small: 0.875rem;
 
-  --space-1: 0.25rem;  
-  --space-2: 0.5rem;   
-  --space-3: 0.75rem;  
+  --space-1: .25rem;  
+  --space-2: .5rem;   
+  --space-3: .75rem;  
   --space-4: 1rem;     
   --space-5: 1.5rem;   
   --space-6: 2rem;     
@@ -176,18 +176,17 @@ main picture{margin-block:var(--space-3)}
 #about .about-dl dd::before{ content:attr(data-label); text-transform:uppercase; letter-spacing:.06em; font-weight:var(--w-semibold); margin-bottom:.05rem; }
 
 /* =========================
-   Contact — scoped to the form after #contact
+   Contact — scoped to form after #contact
    ========================= */
 #contact + form{ padding-block:var(--space-6); }
 #contact + form .form-required{ font-size:.9rem; font-style:italic; color:#666; margin-left:.5rem; }
 
-/* fields stack */
 #contact + form fieldset{
   border:0; padding:0; margin:0 0 var(--space-4);
   display:grid; gap:var(--space-3);
 }
 
-/* labels */
+/* labels (UPPERCASE) */
 #contact + form label{
   font-weight:var(--w-semibold);
   text-transform:uppercase;
@@ -227,30 +226,43 @@ main picture{margin-block:var(--space-3)}
   background-repeat: no-repeat;
 }
 
-/* radio group — works with input + label markup */
+/* ---- radios: pattern A — input + label ---- */
 #contact + form input[type="radio"]{
   position:absolute; opacity:0; width:0; height:0;
 }
 #contact + form input[type="radio"] + label{
   position:relative; padding-left:44px; margin-right:var(--space-4);
   display:inline-flex; align-items:center; line-height:1;
+  text-transform:none; letter-spacing:0; font-weight:var(--w-regular);
 }
-/* outer ring */
 #contact + form input[type="radio"] + label::before{
   content:""; position:absolute; left:0; top:50%; transform:translateY(-50%);
   width:28px; height:28px; border-radius:50%; border:2px solid var(--purple);
 }
-/* inner dot when checked */
 #contact + form input[type="radio"]:checked + label::after{
   content:""; position:absolute; left:7px; top:50%; transform:translateY(-50%);
   width:14px; height:14px; border-radius:50%; background:var(--purple);
 }
-/* focus ring */
 #contact + form input[type="radio"]:focus-visible + label::before{
   box-shadow:var(--focus-ring);
 }
 
-/* submit button */
+/* ---- radios: pattern B — .radio wrapper (input + .radio-control + .radio-label) ---- */
+#contact + form .radio{ display:flex; align-items:center; gap:.6rem; }
+#contact + form .radio input{ position:absolute; opacity:0; inset:0; cursor:pointer; }
+#contact + form .radio .radio-control{
+  width:30px; height:30px; border-radius:50%;
+  border:2px solid var(--purple); display:inline-block; position:relative;
+}
+#contact + form .radio input:checked + .radio-control{
+  outline:6px solid rgba(155,38,176,.20);
+  background: radial-gradient(var(--purple) 0 45%, transparent 46% 100%);
+}
+#contact + form .radio .radio-label{
+  text-transform:none; letter-spacing:0; font-weight:var(--w-regular);
+}
+
+/* submit */
 #contact + form button[type="submit"],
 #contact + form input[type="submit"]{
   width:100%;
@@ -272,4 +284,6 @@ main picture{margin-block:var(--space-3)}
 @media (min-width:768px){
   #plan>div{ grid-template-columns:repeat(2,1fr); }
 }
-@media (prefers-reduced-motion:reduce){ *{ animation:none!important; transition:none!important; } }
+@media (prefers-reduced-motion:reduce){
+  *{ animation:none!important; transition:none!important; }
+}
