@@ -5,7 +5,10 @@
 /* Google Fonts (Montserrat only) */
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap");
 
-/* Meyer reset */
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -19,8 +22,12 @@ article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup, 
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
-  margin: 0; padding: 0; border: 0;
-  font-size: 100%; font: inherit; vertical-align: baseline;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
 }
 article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section { display: block; }
@@ -30,117 +37,495 @@ blockquote, q { quotes: none; }
 blockquote:before, blockquote:after, q:before, q:after { content: ''; content: none; }
 table { border-collapse: collapse; border-spacing: 0; }
 
-/* ============ Brand tokens ============ */
+/* =========================
+   Brand Tokens
+   ========================= */
 :root{
-  --yellow:#F6D64A; --teal:#55BCD5; --purple:#9B26B0; --blue:#499BD2;
-  --dark:#222; --light:#EAEAEA; --white:#fff; --black:#000;
+  --yellow: #F6D64A;
+  --teal: #55BCD5;
+  --purple: #9B26B0;
+  --blue: #499BD2;
+  --dark: #222222;
+  --light: #EAEAEA;
+  --white: #FFFFFF;
+  --black: #000000;
 
-  --ff-heading:"Montserrat",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-  --ff-body:"Montserrat",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  --ff-heading: "Montserrat", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  --ff-body: "Montserrat", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 
-  --w-regular:400; --w-semibold:600;
+  --w-regular: 400;
+  --w-semibold: 600;
 
-  --fs-h1:2rem; --fs-h2:2rem; --fs-h3:1.5rem; --fs-h4:1rem; --fs-body:1rem; --fs-small:.875rem;
+  --fs-h1: 2rem;
+  --fs-h2: 2rem;        /* “Majorca” on mobile */
+  --fs-h3: 1.5rem;
+  --fs-h4: 1rem;
+  --fs-body: 1rem;
+  --fs-small: 0.875rem;
 
-  --space-1:.25rem; --space-2:.5rem; --space-3:.75rem; --space-4:1rem; --space-5:1.5rem; --space-6:2rem;
+  --space-1: 0.25rem;  
+  --space-2: 0.5rem;   
+  --space-3: 0.75rem;  
+  --space-4: 1rem;     
+  --space-5: 1.5rem;   
+  --space-6: 2rem;     
 
-  --gutter:1.5rem;
-  --radius:10px; --shadow:0 2px 8px rgba(0,0,0,.08);
-  --field-border:2px solid var(--purple);
-  --focus-ring:0 0 0 3px rgba(155,38,176,.25);
+  --gutter: 1.5rem;
+
+  --radius: 10px;
+  --shadow: 0 2px 8px rgba(0,0,0,.08);
+
+  --field-border: 2px solid var(--purple);
+  --focus-ring: 0 0 0 3px rgba(155,38,176,.25);
 }
 
-/* ============ Base Type ============ */
-html{font-size:16px}
-body{font-family:var(--ff-body);color:var(--dark);background:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
-
-h1,h2,h3{font-family:var(--ff-heading);font-weight:var(--w-semibold);line-height:1.25;margin:0 0 var(--space-3);color:var(--dark)}
-h1{font-size:var(--fs-h1)} h2{font-size:var(--fs-h2)} h3{font-size:var(--fs-h3)}
-h4{font-family:var(--ff-body);font-size:var(--fs-h4);font-weight:var(--w-semibold);margin:0 0 var(--space-2);line-height:1.25}
-p,q,small,label,input,select,button,a,li,dd,dt{font-family:var(--ff-body);font-size:var(--fs-body)}
-small{font-size:var(--fs-small)} strong,b{font-weight:var(--w-semibold)} em,i{font-style:italic}
-
-/* ============ Accessibility helpers ============ */
-.sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;clip-path:inset(50%)!important;white-space:nowrap!important;border:0!important}
-#skip,.skip-link{position:absolute;left:-9999px;top:-9999px}
-#skip:focus,.skip-link:focus{left:var(--gutter);top:var(--gutter);background:var(--yellow);color:var(--black);padding:var(--space-2) var(--space-3);border-radius:var(--radius);z-index:1000}
-
-/* ============ Wrappers ============ */
-header,footer,main{width:min(100%,1100px);margin-inline:auto;padding-inline:var(--gutter)}
-
-/* ============ Header ============ */
-header{position:relative;padding-block:var(--space-4);background:linear-gradient(180deg,var(--teal) 0%,rgba(85,188,213,.15) 100%)}
-header #logo+ h1{font-size:clamp(2rem,7vw,2.6rem);line-height:1.1;margin-top:var(--space-3)}
-header p{margin-top:var(--space-2);font-size:1rem;max-width:28ch}
-
-/* ============ Plan band (already done) ============ */
-#plan{background:var(--yellow);padding-block:var(--space-5);margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);padding-inline:var(--gutter)}
-#plan>h3{margin-bottom:var(--space-4)}
-#plan>div{display:grid;gap:var(--space-3);grid-template-columns:1fr}
-#plan section{background:var(--teal);border-radius:var(--radius);padding:var(--space-4);border:3px solid var(--white);box-shadow:var(--shadow);text-align:center;display:flex;flex-direction:column;align-items:center;gap:var(--space-3)}
-#plan h4{text-transform:uppercase;letter-spacing:.035em;font-weight:var(--w-semibold);font-size:.95rem}
-#plan img,#plan svg{display:block;width:clamp(88px,45vw,128px);height:auto;margin:0 auto}
-#plan svg{fill:#fff;stroke:none}
-
-/* ============ Testimonials (legacy-friendly) ============ */
-main h2 + article, main h2 + article ~ article{
-  display:grid;grid-template-columns:1fr;grid-template-areas:"img" "name" "loc" "quote";
-  justify-items:center;text-align:center;gap:var(--space-1);margin-block:var(--space-5);
-}
-main h2 + article img, main h2 + article ~ article img{
-  grid-area:img;width:clamp(110px,30vw,136px);height:clamp(110px,30vw,136px);
-  border-radius:50%;object-fit:cover;margin:0 auto var(--space-2);box-shadow:var(--shadow);
-}
-main h2 + article h3, main h2 + article ~ article h3{
-  grid-area:name;text-transform:uppercase;letter-spacing:.06em;font-weight:var(--w-semibold);
-  font-size:clamp(1.05rem,3.4vw,1.35rem);line-height:1.15;max-width:18ch;margin:0 auto var(--space-1);
-}
-main h2 + article h3 + img + p, main h2 + article ~ article h3 + img + p{
-  grid-area:loc;color:#333;margin:0 0 var(--space-1);font-size:.95rem;
-}
-main h2 + article h3 + img + p strong, main h2 + article ~ article h3 + img + p strong{display:none}
-main h2 + article blockquote, main h2 + article ~ article blockquote{
-  grid-area:quote;border:0;padding:0;font-style:italic;color:#45484d;max-width:24ch;margin:var(--space-1) auto 0;line-height:1.45;font-size:1rem;
+/* =========================
+   Base Type
+   ========================= */
+html { font-size: 16px; }
+body {
+  font-family: var(--ff-body);
+  color: var(--dark);
+  background: var(--white);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* ============ ABOUT (exact match to mock) ============ */
-#about{
-  background:var(--blue);
-  color:var(--white);
-  padding-block:var(--space-6);
-  margin-left:calc(50% - 50vw);
-  margin-right:calc(50% - 50vw);
-  padding-inline:var(--gutter);
+/* All headings Montserrat */
+h1, h2, h3 {
+  font-family: var(--ff-heading);
+  font-style: normal;
+  font-weight: var(--w-semibold);
+  line-height: 1.25;
+  margin: 0 0 var(--space-3);
+  color: var(--dark);
 }
-#about>h2,#about>h3{color:var(--white);margin-bottom:var(--space-4)}
-#about>div{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--space-4)}
-#about section{text-align:center}
-#about img{width:64px;height:auto;margin:0 auto var(--space-2);display:block;filter:none}
-#about h4{
-  text-transform:uppercase;
-  letter-spacing:.06em;
-  font-weight:var(--w-semibold);
-  color:#0f172a;            /* dark label like mockup */
-  margin-bottom:.25rem;
-}
-#about p{
-  margin:0;
-  color:#0f172a;            /* value in dark text */
-  font-size:1rem;
+h1 { font-size: var(--fs-h1); }
+h2 { font-size: var(--fs-h2); }
+h3 { font-size: var(--fs-h3); }
+
+h4 {
+  font-family: var(--ff-body);
+  font-size: var(--fs-h4);
+  font-weight: var(--w-semibold);
+  margin: 0 0 var(--space-2);
+  line-height: 1.25;
 }
 
-/* ============ Contact (unchanged) ============ */
-#contact{padding-block:var(--space-6)}
-/* … keep the rest of your contact, inputs, buttons, images rules as previously posted … */
-
-/* Images within <picture> */
-@media (max-width:767px){
-  main picture{display:block;width:100%}
-  main picture img{display:block;width:100%;height:auto}
+p, q, small, label, input, select, button, a, li, dd, dt {
+  font-family: var(--ff-body);
+  font-size: var(--fs-body);
 }
-main picture{margin-block:var(--space-3)}
+small { font-size: var(--fs-small); }
+strong, b { font-weight: var(--w-semibold); }
+em, i { font-style: italic; }
 
-@media (min-width:768px){
-  #plan>div{grid-template-columns:repeat(2,1fr)}
+q { color: #333; }
+blockquote { border-left: 4px solid var(--light); padding-left: var(--space-3); margin: var(--space-3) 0; color: #333; }
+
+/* =========================
+   Accessibility utilities
+   ========================= */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  clip-path: inset(50%) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
 }
-@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+#skip, .skip-link { position: absolute; left: -9999px; top: -9999px; }
+#skip:focus, .skip-link:focus {
+  left: var(--gutter); top: var(--gutter);
+  background: var(--yellow); color: var(--black);
+  padding: var(--space-2) var(--space-3); border-radius: var(--radius); z-index: 1000;
+}
+
+/* =========================
+   Layout wrappers
+   ========================= */
+header, footer, main, #main-content article {
+  width: min(100%, 1100px);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* =========================
+   Header
+   ========================= */
+header {
+  position: relative;
+  padding-block: var(--space-4);
+  background: linear-gradient(180deg, var(--teal) 0%, rgba(85,188,213,0.15) 100%);
+}
+header > img { width: 120px; display: block; margin: 0 auto; }
+
+/* Brand header (when #logo precedes h1) */
+header #logo + h1 {
+  font-weight: var(--w-semibold);
+  font-size: clamp(2rem, 7vw, 2.6rem); /* big “Wunderlust” */
+  line-height: 1.1;
+  margin-top: var(--space-3);
+}
+header p {
+  text-align: left;
+  margin-top: var(--space-2);
+  font-size: 1rem;
+  max-width: 28ch; /* wrap like mockup */
+}
+
+/* Menu button */
+#menu-toggle { position: relative; }
+#menu-toggle label{
+  position: absolute;
+  right: 0;
+  top: -56px; /* lift into the top-right corner of header */
+  background: var(--yellow);
+  color: var(--black);
+  padding: var(--space-2) var(--space-5);
+  border-radius: 10px;
+  font-weight: var(--w-semibold);
+  text-transform: uppercase;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  z-index: 2;
+}
+#menu-toggle input{ position: absolute; opacity:0; pointer-events:none; }
+#menu-toggle ul{ display:none; margin-top: var(--space-3); }
+#menu-toggle ul li a{
+  display:block; padding: var(--space-3); background: var(--light);
+  border-radius: var(--radius); text-align:center; font-weight: var(--w-semibold);
+  text-transform: uppercase;
+}
+#menu-toggle input:checked ~ ul{ display:grid; gap: var(--space-2); }
+
+/* =========================
+   Intro
+   ========================= */
+#intro { padding-block: var(--space-6) var(--space-5); }
+#intro h2 { margin-bottom: var(--space-3); }
+#intro p { margin-bottom: var(--space-4); }
+
+/* =========================
+   Plan (mobile-first)
+   ========================= */
+#plan {
+  background: var(--yellow);
+  padding-block: var(--space-5);
+  /* make the yellow band full-bleed on mobile */
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  padding-inline: var(--gutter);
+}
+#plan > h3 { margin-bottom: var(--space-4); }
+#plan > div {
+  display: grid;
+  gap: var(--space-3);
+  grid-template-columns: 1fr;
+}
+#plan section {
+  background: var(--teal);
+  color: var(--black);
+  border-radius: var(--radius);
+  padding: var(--space-4);
+  border: 3px solid var(--white);
+  box-shadow: var(--shadow);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+}
+#plan h4 {
+  color: var(--black);
+  margin: 0;
+  font-weight: var(--w-semibold);
+  text-transform: uppercase;
+  letter-spacing: .035em;
+  font-size: 0.95rem;
+  line-height: 1.1;
+}
+/* icons inside #plan: support both <img> and inline <svg> */
+#plan img,
+#plan svg {
+  display: block;
+  width: clamp(88px, 45vw, 128px);
+  height: auto;
+  margin: 0 auto;
+}
+#plan svg { fill: #fff; stroke: none; }
+
+/* =========================
+   Testimonials — new wrapper (#testimonials)
+   ========================= */
+#testimonials { padding-block: var(--space-6); }
+#testimonials > h3 { margin-bottom: var(--space-4); }
+#testimonials > div { display: grid; grid-template-columns: 1fr; gap: var(--space-5); }
+#testimonials section { text-align: center; }
+#testimonials img {
+  width: clamp(110px, 30vw, 136px);
+  height: clamp(110px, 30vw, 136px);
+  border-radius: 50%;
+  object-fit: cover; margin: 0 auto var(--space-3);
+  box-shadow: var(--shadow);
+}
+#testimonials h4 {
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  font-weight: var(--w-semibold);
+  font-size: clamp(1.05rem, 3.4vw, 1.35rem);
+  line-height: 1.15;
+  max-width: 18ch;          /* encourage 2-line wrap */
+  margin: 0 auto var(--space-1);
+}
+#testimonials p {
+  color: #333;
+  margin: 0 0 var(--space-1);
+  font-size: .95rem;
+}
+#testimonials p strong { display: none; }  /* hide "Traveling From:" label */
+#testimonials q {
+  display: block;
+  font-style: italic;
+  color: #45484d;
+  max-width: 24ch;          /* comfy two-line quote */
+  margin: var(--space-1) auto 0;
+  line-height: 1.45;
+  font-size: 1rem;
+}
+
+/* =========================
+   Testimonials — legacy markup (your current HTML)
+   Enforce visual order with CSS Grid: IMG → NAME → LOCATION → QUOTE
+   ========================= */
+main h2 + article,
+main h2 + article ~ article{
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "img"
+    "name"
+    "loc"
+    "quote";
+  justify-items: center;
+  text-align: center;
+  gap: var(--space-1);
+  margin-block: var(--space-5);
+}
+
+/* Photo */
+main h2 + article img,
+main h2 + article ~ article img{
+  grid-area: img;
+  width: clamp(110px, 30vw, 136px);
+  height: clamp(110px, 30vw, 136px);
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto var(--space-2);
+  box-shadow: var(--shadow);
+}
+
+/* Name */
+main h2 + article h3,
+main h2 + article ~ article h3{
+  grid-area: name;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  font-weight: var(--w-semibold);
+  font-size: clamp(1.05rem, 3.4vw, 1.35rem);
+  line-height: 1.15;
+  max-width: 18ch;
+  margin: 0 auto var(--space-1);
+}
+
+/* Location (hide label) */
+main h2 + article h3 + img + p,
+main h2 + article ~ article h3 + img + p{
+  grid-area: loc;
+  color: #333;
+  margin: 0 0 var(--space-1);
+  font-size: .95rem;
+}
+main h2 + article h3 + img + p strong,
+main h2 + article ~ article h3 + img + p strong{
+  display: none;
+}
+
+/* Quote */
+main h2 + article blockquote,
+main h2 + article ~ article blockquote{
+  grid-area: quote;
+  border: 0;
+  padding: 0;
+  font-style: italic;
+  color: #45484d;
+  max-width: 24ch;
+  margin: var(--space-1) auto 0;
+  line-height: 1.45;
+  font-size: 1rem;
+}
+
+/* =========================
+   About — NEW: DL legacy styling (no HTML changes)
+   Turns:  <h2>About Your Destination</h2> + <dl>…</dl>
+   into a blue, full-bleed 2×2 grid with icons + label + value.
+   ========================= */
+main h2 + dl{
+  background: var(--blue);
+  padding-block: var(--space-6);
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  padding-inline: var(--gutter);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+}
+
+/* Keep semantics for screen readers but hide visual dts */
+main h2 + dl dt{
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0,0,0,0) !important;
+  clip-path: inset(50%) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* Each dd becomes the card: icon + label (::before) + value (text node) */
+main h2 + dl dd{
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .35rem;
+  color: #0f172a; /* dark text on blue like mock */
+  font-size: 1rem;
+}
+
+/* Icons inside dd (your inline SVGs) */
+main h2 + dl dd svg{
+  display: block;
+  width: 64px;
+  height: 64px;
+  margin: 0 auto .4rem;
+  /* Support both stroke (Tabler-style) and filled icons */
+  fill: #fff;
+  stroke: #fff;
+  stroke-width: 1.5;
+}
+main h2 + dl dd svg *{
+  fill: inherit;
+  stroke: inherit;
+}
+
+/* Inject the uppercase labels under the icon */
+main h2 + dl dd::before{
+  content: "";
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  font-weight: var(--w-semibold);
+  margin-bottom: .05rem;
+}
+
+/* Map each dd to its label text */
+main h2 + dl dd:nth-of-type(1)::before{ content: "Size"; }
+main h2 + dl dd:nth-of-type(2)::before{ content: "Elevation"; }
+main h2 + dl dd:nth-of-type(3)::before{ content: "Location"; }
+main h2 + dl dd:nth-of-type(4)::before{ content: "Population"; }
+
+/* =========================
+   Contact (kept from previous)
+   ========================= */
+#contact { padding-block: var(--space-6); }
+#contact h3 { margin-bottom: var(--space-2); }
+.form-required { font-size: var(--fs-small); color: #666; }
+#names, #nums, #selects { display: grid; gap: var(--space-3); margin-top: var(--space-4); }
+label { font-weight: var(--w-semibold); display: block; margin-bottom: var(--space-1); }
+.required { color: var(--purple); margin-left: .25ch; }
+input[type="text"], input[type="email"], input[type="tel"], select {
+  width: 100%; padding: .85rem 1rem; border: var(--field-border);
+  border-radius: 6px; background: var(--white);
+  font-family: var(--ff-body); font-size: var(--fs-body);
+}
+input::placeholder { color: #888; }
+
+/* Radio group */
+fieldset { border: 0; padding: 0; margin: 0; }
+legend { font-weight: var(--w-semibold); margin-bottom: var(--space-2); }
+.radio-input { position: relative; display: inline-flex; align-items: center; margin-right: var(--space-4); }
+.radio-input input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
+.radio-control {
+  width: 28px; height: 28px; border-radius: 50%;
+  border: var(--field-border); display: inline-block; margin-right: var(--space-2);
+}
+.radio-input input:checked + .radio-control {
+  outline: 6px solid rgba(155,38,176,.2);
+  background: radial-gradient(var(--purple) 0 45%, transparent 46% 100%);
+}
+
+/* Custom select caret */
+.custom-select { position: relative; }
+.custom-select select {
+  appearance: none;
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--purple) 50%),
+    linear-gradient(135deg, var(--purple) 50%, transparent 50%),
+    linear-gradient(to right, transparent, transparent);
+  background-position:
+    calc(100% - 22px) 55%,
+    calc(100% - 16px) 55%,
+    100% 0;
+  background-size: 6px 6px, 6px 6px, 2.5rem 100%;
+  background-repeat: no-repeat;
+}
+
+/* Buttons */
+#mySubmit,
+input[type="submit"],
+button,
+button[type="submit"]{
+  display: inline-block;
+  margin-top: var(--space-4);
+  background: var(--purple);
+  color: var(--white);
+  border: none;
+  padding: .9rem 1.5rem;
+  border-radius: 8px;
+  font-weight: var(--w-semibold);
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+}
+#mySubmit:focus-visible, button:focus-visible { box-shadow: var(--focus-ring); }
+
+/* Images */
+@media (max-width: 767px){
+  main picture { display: block; width: 100%; }
+  main picture img { display: block; width: 100%; height: auto; }
+}
+main picture { margin-block: var(--space-3); }
+
+/* Progressive enhancement */
+@media (min-width: 768px){ /* tablet and up */
+  #plan > div { grid-template-columns: repeat(2, 1fr); }
+}
+@media (prefers-reduced-motion: reduce){
+  * { animation: none !important; transition: none !important; }
+}
+
+/* Shared patches */
+main dl { /* allow other dl's to behave normally unless targeted above */ }
+main dt { font-weight: var(--w-semibold); }
+main dd { margin: 0; }
