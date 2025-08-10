@@ -321,9 +321,11 @@ footer a { text-decoration: underline; }
   fill: none;
   stroke-width: 1.5;
 }
-/* ensure <picture> stacks and fills width on mobile */
-main#main picture { display: block; width: 100%; }
-main#main picture img { display: block; width: 100%; height: auto; }
+/* MOBILE-ONLY: ensure <picture> stacks and fills width */
+@media (max-width: 767px){
+  main#main picture { display: block; width: 100%; }
+  main#main picture img { display: block; width: 100%; height: auto; }
+}
 
 main#main picture { margin-block: var(--space-3); }
 main#main dl { display: grid; gap: var(--space-3); margin-block: var(--space-4); }
