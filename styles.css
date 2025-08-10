@@ -127,7 +127,7 @@ blockquote { border-left: 4px solid var(--light); padding-left: var(--space-3); 
 /* =========================
    Accessibility utilities
    ========================= */
-/* Robust visually-hidden helper */
+/* Robust visually-hidden helper (kept for future use) */
 .sr-only {
   position: absolute !important;
   width: 1px !important;
