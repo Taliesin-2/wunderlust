@@ -2,8 +2,8 @@
    Mobile-first build with Meyer reset + Typography setup
 */
 
-/* Google Fonts for all pages */
-@import url("https://fonts.googleapis.com/css2?family=Molle:ital@1&family=Montserrat:wght@400;600&display=swap");
+/* Google Fonts (Montserrat only) */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap");
 
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
@@ -50,8 +50,8 @@ table { border-collapse: collapse; border-spacing: 0; }
   --white: #FFFFFF;
   --black: #000000;
 
-  --ff-heading: "Molle", cursive;           /* h1–h3 default */
-  --ff-body: "Montserrat", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; /* h4, body, nav, form */
+  --ff-heading: "Montserrat", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  --ff-body: "Montserrat", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 
   --w-regular: 400;
   --w-semibold: 600;
@@ -89,12 +89,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Default heading styles (Molle) */
+/* All headings Montserrat (no italics) */
 h1, h2, h3 {
   font-family: var(--ff-heading);
-  font-style: italic;
-  font-weight: var(--w-regular);
-  line-height: 1.2;
+  font-style: normal;
+  font-weight: var(--w-semibold);
+  line-height: 1.25;
   margin: 0 0 var(--space-3);
   color: var(--dark);
 }
@@ -118,7 +118,7 @@ small { font-size: var(--fs-small); }
 strong, b { font-weight: var(--w-semibold); }
 em, i { font-style: italic; }
 
-q { font-style: italic; color: #333; }
+q { color: #333; }
 blockquote { border-left: 4px solid var(--light); padding-left: var(--space-3); margin: var(--space-3) 0; color: #333; }
 
 /* Utility: screen-reader-only */
@@ -147,35 +147,38 @@ header, footer {
 }
 
 /* =========================
-   Main Page Styles
+   Header
    ========================= */
 header {
   padding-block: var(--space-4);
   background: linear-gradient(180deg, var(--teal) 0%, rgba(85,188,213,0.15) 100%);
 }
-/* standardize logo sizing for headers that are not using #logo */
 header > img { width: 120px; display: block; margin: 0 auto; }
 
-/* OVERRIDE: Header brand line should be Montserrat (not italic) */
+/* index.html header (tagline as h1) */
 header h1 {
   font-family: var(--ff-body);
   font-style: normal;
   font-weight: var(--w-semibold);
-  font-size: clamp(2rem, 7vw, 2.6rem);
-  line-height: 1.1;
+  font-size: clamp(1.25rem, 4.5vw, 1.6rem);
+  line-height: 1.25;
   text-align: left;
   margin-top: var(--space-3);
+  max-width: 30ch;
 }
 
-/* Tagline under brand */
-header p  {
+/* Base HTML brand header (when #logo precedes h1) */
+header #logo + h1 {
+  font-size: clamp(2rem, 7vw, 2.6rem); /* larger brand line */
+  line-height: 1.1;
+  max-width: none;
+}
+header p {
   text-align: left;
   margin-top: var(--space-2);
   font-size: 1rem;
-  max-width: 28ch;   /* match mockup wrapping */
+  max-width: 28ch;
 }
-
-#logo img { width: 120px; margin-inline: auto; }
 
 /* Nav toggle (Base HTML header) */
 nav { margin-top: var(--space-4); }
@@ -195,12 +198,16 @@ nav { margin-top: var(--space-4); }
 #menu-toggle ul li.active a { background: var(--yellow); }
 #menu-toggle input:checked ~ ul { display: grid; grid-template-columns: 1fr; }
 
-/* Intro */
+/* =========================
+   Intro
+   ========================= */
 #intro { padding-block: var(--space-6) var(--space-5); }
 #intro p { margin-bottom: var(--space-4); }
 #img-grid { display: grid; gap: var(--space-3); grid-template-columns: 1fr; }
 
-/* Plan */
+/* =========================
+   Plan
+   ========================= */
 #plan { padding-block: var(--space-5); background: var(--yellow); }
 #plan > h3 { margin-bottom: var(--space-4); }
 #plan > div { display: grid; gap: var(--space-3); grid-template-columns: 1fr; }
@@ -212,7 +219,9 @@ nav { margin-top: var(--space-4); }
 #plan h4 { color: var(--black); margin-bottom: var(--space-3); font-weight: var(--w-semibold); letter-spacing: .01em; }
 #plan img { width: 64px; margin: 0 auto; }
 
-/* Testimonials */
+/* =========================
+   Testimonials
+   ========================= */
 #testimonials { padding-block: var(--space-6); }
 #testimonials > h3 { margin-bottom: var(--space-4); }
 #testimonials > div { display: grid; grid-template-columns: 1fr; gap: var(--space-5); }
@@ -225,7 +234,9 @@ nav { margin-top: var(--space-4); }
 #testimonials h4 { letter-spacing: .02em; font-weight: var(--w-semibold); }
 #testimonials p { color: #555; margin: 0 0 var(--space-2); font-size: .95rem; }
 
-/* About */
+/* =========================
+   About
+   ========================= */
 #about { padding-block: var(--space-5); background: var(--blue); color: var(--white); }
 #about > h3 { color: var(--white); margin-bottom: var(--space-4); }
 #about > div { display: grid; grid-template-columns: 1fr; gap: var(--space-4); }
@@ -234,7 +245,9 @@ nav { margin-top: var(--space-4); }
 #about h4 { color: var(--white); margin: 0 0 var(--space-1); }
 #about p { margin: 0; color: #eaf6ff; }
 
-/* Contact */
+/* =========================
+   Contact
+   ========================= */
 #contact { padding-block: var(--space-6); }
 #contact h3 { margin-bottom: var(--space-2); }
 .form-required { font-size: var(--fs-small); color: #666; }
@@ -313,7 +326,7 @@ footer{
 footer a { text-decoration: underline; }
 
 /* =========================
-   Progressive enhancement
+   Breakpoints & Prefs
    ========================= */
 @media (min-width: 428px){ /* iPhone 12 Pro Max width */
   #plan > div { grid-template-columns: repeat(2, 1fr); }
@@ -322,7 +335,9 @@ footer a { text-decoration: underline; }
   * { animation: none !important; transition: none !important; }
 }
 
-/* ===== index.html compatibility & mobile tweaks ===== */
+/* =========================
+   index.html compatibility & mobile tweaks
+   ========================= */
 .skip-link { position: absolute; left: -9999px; top: -9999px; }
 .skip-link:focus {
   left: var(--space-4); top: var(--space-4);
