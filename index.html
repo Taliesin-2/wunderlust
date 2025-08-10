@@ -9,16 +9,24 @@
 </head>
 <body>
   <a href="#main" class="skip-link">Skip to main content</a>
+
   <header>
-    <img src="images/logo-L.png" alt="Wunderlust Travel Logo">
-    <h1>Let Wunderlust Travel help you plan the trip of your dreams!</h1>
+    <a href="index.html" id="logo"><img src="images/logo-L.png" alt="Wunderlust Travel Logo"></a>
+    <h1>Wunderlust</h1>
+    <p>Let Wunderlust Travel help you plan the trip of your dreams!</p>
+
     <nav>
-      <ul>
-        <li><a href="#">Destinations</a></li>
-        <li><a href="#">Inspirations</a></li>
-        <li><a href="#">Special</a></li>
-        <li><a href="#contact">Contact Us</a></li>
-      </ul>
+      <div id="menu-toggle">
+        <h2 class="sr-only">Main Navigation</h2>
+        <input type="checkbox" id="toggle" name="toggle">
+        <label for="toggle">Menu</label>
+        <ul>
+          <li><a href="#">Destinations</a></li>
+          <li><a href="#">Inspirations</a></li>
+          <li><a href="#">Special</a></li>
+          <li><a href="#contact">Contact Us</a></li>
+        </ul>
+      </div>
     </nav>
   </header>
 
@@ -26,7 +34,6 @@
     <h2>Majorca</h2>
     <p>Imagine an island with turquoise blue waters, secret coves, soft golden sands, lush green foliage, rugged mountains, picturesque villages and a vibrant capital city. The island and its capital, Palma, are overflowing with character, while its beaches are famous all around the world, making it one of the most sought-after summer destinations.</p>
 
-    <!-- waves -->
     <picture>
       <source srcset="images/majorca-waves-L.png" media="(min-width: 1024px)">
       <source srcset="images/majorca-waves-M.png" media="(min-width: 780px)">
@@ -34,7 +41,6 @@
       <img src="images/majorca-waves-S.png" alt="Waves in Majorca">
     </picture>
 
-    <!-- beach -->
     <picture>
       <source srcset="images/majorca-beach-L.png" media="(min-width: 1024px)">
       <source srcset="images/majorca-beach-M.png" media="(min-width: 780px)">
@@ -42,7 +48,6 @@
       <img src="images/majorca-beach-S.png" alt="Beach in Majorca">
     </picture>
 
-    <!-- cove -->
     <picture>
       <source srcset="images/majorca-cove-L.png" media="(min-width: 1024px)">
       <source srcset="images/majorca-cove-M.png" media="(min-width: 780px)">
@@ -119,14 +124,10 @@
 
     <h2>About Your Destination</h2>
     <dl>
-      <dt>Size</dt>
-      <dd>1,405 miles squared</dd>
-      <dt>Elevation</dt>
-      <dd>4,741 feet</dd>
-      <dt>Location</dt>
-      <dd>Mediterranean</dd>
-      <dt>Population</dt>
-      <dd>923,608</dd>
+      <dt>Size</dt><dd>1,405 miles squared</dd>
+      <dt>Elevation</dt><dd>4,741 feet</dd>
+      <dt>Location</dt><dd>Mediterranean</dd>
+      <dt>Population</dt><dd>923,608</dd>
     </dl>
 
     <h2 id="contact">Contact Us</h2>
