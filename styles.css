@@ -169,7 +169,7 @@ header > img { width: 120px; display: block; margin: 0 auto; }
 /* Brand header (when #logo precedes h1) */
 header #logo + h1 {
   font-weight: var(--w-semibold);
-  font-size: clamp(2rem, 7vw, 2.6rem);
+  font-size: clamp(2rem, 7vw, 2.6rem); /* big “Wunderlust” */
   line-height: 1.1;
   margin-top: var(--space-3);
 }
@@ -177,7 +177,7 @@ header p {
   text-align: left;
   margin-top: var(--space-2);
   font-size: 1rem;
-  max-width: 28ch;
+  max-width: 28ch; /* wrap like mockup */
 }
 
 /* Menu button */
@@ -185,7 +185,7 @@ header p {
 #menu-toggle label{
   position: absolute;
   right: 0;
-  top: -56px;
+  top: -56px; /* lift into the top-right corner of header */
   background: var(--yellow);
   color: var(--black);
   padding: var(--space-2) var(--space-5);
@@ -218,7 +218,7 @@ header p {
 #plan {
   background: var(--yellow);
   padding-block: var(--space-5);
-  /* make the yellow band full-bleed on mobile */
+  /* full-bleed band on mobile */
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
   padding-inline: var(--gutter);
@@ -227,7 +227,7 @@ header p {
 #plan > div {
   display: grid;
   gap: var(--space-3);
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr; /* stack on mobile */
 }
 #plan section {
   background: var(--teal);
@@ -366,7 +366,7 @@ main picture { margin-block: var(--space-3); }
 /* =========================
    Progressive enhancement
    ========================= */
-@media (min-width: 428px){ /* iPhone 12 Pro Max width */
+@media (min-width: 768px){ /* tablet and up */
   #plan > div { grid-template-columns: repeat(2, 1fr); }
 }
 @media (prefers-reduced-motion: reduce){
