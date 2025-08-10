@@ -121,9 +121,6 @@ small { font-size: var(--fs-small); }
 strong, b { font-weight: var(--w-semibold); }
 em, i { font-style: italic; }
 
-q { color: #333; }
-blockquote { border-left: 4px solid var(--light); padding-left: var(--space-3); margin: var(--space-3) 0; color: #333; }
-
 /* =========================
    Accessibility utilities
    ========================= */
@@ -218,7 +215,7 @@ header p {
 #plan {
   background: var(--yellow);
   padding-block: var(--space-5);
-  /* full-bleed band on mobile */
+  /* make the yellow band full-bleed on mobile */
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
   padding-inline: var(--gutter);
@@ -227,7 +224,7 @@ header p {
 #plan > div {
   display: grid;
   gap: var(--space-3);
-  grid-template-columns: 1fr; /* stack on mobile */
+  grid-template-columns: 1fr;
 }
 #plan section {
   background: var(--teal);
@@ -263,19 +260,64 @@ header p {
 #plan svg { fill: #fff; stroke: none; }
 
 /* =========================
-   Testimonials
+   Testimonials (new #testimonials wrapper)
    ========================= */
 #testimonials { padding-block: var(--space-6); }
 #testimonials > h3 { margin-bottom: var(--space-4); }
 #testimonials > div { display: grid; grid-template-columns: 1fr; gap: var(--space-5); }
 #testimonials section { text-align: center; }
 #testimonials img {
-  width: 120px; height: 120px; border-radius: 50%;
+  width: clamp(96px, 28vw, 120px);
+  height: clamp(96px, 28vw, 120px);
+  border-radius: 50%;
   object-fit: cover; margin: 0 auto var(--space-3);
   box-shadow: var(--shadow);
 }
-#testimonials h4 { letter-spacing: .02em; font-weight: var(--w-semibold); }
-#testimonials p { color: #555; margin: 0 0 var(--space-2); font-size: .95rem; }
+#testimonials h4 { text-transform: uppercase; letter-spacing: .04em; font-weight: var(--w-semibold); margin-bottom: var(--space-1); }
+#testimonials p { color: #666; margin: 0 0 var(--space-2); font-size: .95rem; }
+#testimonials q { display: block; font-style: italic; color: #444; max-width: 28ch; margin: 0 auto; line-height: 1.35; }
+
+/* =========================
+   Testimonials (legacy markup support)
+   For pages where <h2>Testimonials</h2> is followed by individual <article> items.
+   ========================= */
+main h2 + article,
+main h2 + article ~ article {
+  text-align: center;
+  margin-block: var(--space-5);
+}
+main h2 + article img,
+main h2 + article ~ article img {
+  width: clamp(96px, 28vw, 120px);
+  height: clamp(96px, 28vw, 120px);
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto var(--space-3);
+  box-shadow: var(--shadow);
+}
+main h2 + article h3,
+main h2 + article ~ article h3 {
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  font-weight: var(--w-semibold);
+  margin-bottom: var(--space-1);
+}
+main h2 + article p,
+main h2 + article ~ article p {
+  color: #666;
+  margin: 0 0 var(--space-2);
+  font-size: .95rem;
+}
+main h2 + article blockquote,
+main h2 + article ~ article blockquote {
+  border: 0;                 /* remove left bar */
+  padding-left: 0;           /* remove extra inset */
+  font-style: italic;
+  color: #444;
+  max-width: 28ch;
+  margin: 0 auto;
+  line-height: 1.35;
+}
 
 /* =========================
    About
