@@ -304,7 +304,7 @@ footer a { text-decoration: underline; }
   * { animation: none !important; transition: none !important; }
 }
 
-/* ===== PATCH for index.html compatibility ===== */
+/* ===== index.html compatibility & mobile tweaks ===== */
 .skip-link { position: absolute; left: -9999px; top: -9999px; }
 .skip-link:focus {
   left: var(--space-4); top: var(--space-4);
@@ -321,6 +321,9 @@ footer a { text-decoration: underline; }
   fill: none;
   stroke-width: 1.5;
 }
+/* NEW: ensure <picture> stacks and fills width on mobile */
+main#main picture { display: block; width: 100%; }
+main#main picture img { display: block; width: 100%; height: auto; }
 
 main#main picture { margin-block: var(--space-3); }
 main#main dl { display: grid; gap: var(--space-3); margin-block: var(--space-4); }
