@@ -22,12 +22,12 @@ article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup, 
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
 }
 article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section { display: block; }
@@ -57,7 +57,7 @@ table { border-collapse: collapse; border-spacing: 0; }
   --w-semibold: 600;
 
   --fs-h1: 2rem;
-  --fs-h2: 2rem;        /* “Majorca” size on mobile */
+  --fs-h2: 2rem;        /* “Majorca” on mobile */
   --fs-h3: 1.5rem;
   --fs-h4: 1rem;
   --fs-body: 1rem;
@@ -127,7 +127,6 @@ blockquote { border-left: 4px solid var(--light); padding-left: var(--space-3); 
 /* =========================
    Accessibility utilities
    ========================= */
-/* Robust visually-hidden helper (kept for future use) */
 .sr-only {
   position: absolute !important;
   width: 1px !important;
@@ -216,16 +215,53 @@ header p {
 /* =========================
    Plan
    ========================= */
-#plan { padding-block: var(--space-5); background: var(--yellow); }
-#plan > h3 { margin-bottom: var(--space-4); }
-#plan > div { display: grid; gap: var(--space-3); grid-template-columns: 1fr; }
-#plan section {
-  background: var(--teal); color: var(--black);
-  border-radius: var(--radius); padding: var(--space-4);
-  box-shadow: var(--shadow); text-align: center;
+#plan {
+  /* full-bleed yellow band while content stays aligned to the page gutter */
+  background: var(--yellow);
+  padding-block: var(--space-5);
+  /* expand to viewport edges */
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  /* keep inner padding matching the page gutter */
+  padding-inline: var(--gutter);
 }
-#plan h4 { color: var(--black); margin-bottom: var(--space-3); font-weight: var(--w-semibold); letter-spacing: .01em; }
-#plan img { width: 64px; margin: 0 auto; }
+#plan > h3 { margin-bottom: var(--space-4); }
+#plan > div {
+  display: grid;
+  gap: var(--space-3);
+  grid-template-columns: 1fr; /* stack on mobile */
+}
+#plan section {
+  background: var(--teal);
+  color: var(--black);
+  border-radius: var(--radius);
+  padding: var(--space-4);
+  border: 3px solid var(--white);          /* white border like mockup */
+  box-shadow: var(--shadow);
+  text-align: center;
+
+  /* ensure consistent spacing / centering */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+}
+#plan h4 {
+  color: var(--black);
+  margin: 0;                               /* tight to top like mockup */
+  font-weight: var(--w-semibold);
+  text-transform: uppercase;               /* uppercase like mockup */
+  letter-spacing: .035em;
+  font-size: 0.95rem;
+  line-height: 1.1;
+}
+#plan img {
+  display: block;
+  width: clamp(88px, 45vw, 128px);         /* big centered icons */
+  height: auto;
+  margin: 0 auto;
+}
 
 /* =========================
    Testimonials
