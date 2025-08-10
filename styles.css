@@ -50,7 +50,7 @@ table { border-collapse: collapse; border-spacing: 0; }
   --white: #FFFFFF;
   --black: #000000;
 
-  --ff-heading: "Molle", cursive;           /* h1–h3 */
+  --ff-heading: "Molle", cursive;           /* h1–h3 default */
   --ff-body: "Montserrat", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; /* h4, body, nav, form */
 
   --w-regular: 400;
@@ -89,6 +89,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Default heading styles (Molle) */
 h1, h2, h3 {
   font-family: var(--ff-heading);
   font-style: italic;
@@ -155,9 +156,26 @@ header {
 /* standardize logo sizing for headers that are not using #logo */
 header > img { width: 120px; display: block; margin: 0 auto; }
 
+/* OVERRIDE: Header brand line should be Montserrat (not italic) */
+header h1 {
+  font-family: var(--ff-body);
+  font-style: normal;
+  font-weight: var(--w-semibold);
+  font-size: clamp(2rem, 7vw, 2.6rem);
+  line-height: 1.1;
+  text-align: left;
+  margin-top: var(--space-3);
+}
+
+/* Tagline under brand */
+header p  {
+  text-align: left;
+  margin-top: var(--space-2);
+  font-size: 1rem;
+  max-width: 28ch;   /* match mockup wrapping */
+}
+
 #logo img { width: 120px; margin-inline: auto; }
-header h1 { text-align: center; margin-top: var(--space-3); }
-header p  { text-align: center; margin: 0; font-size: 0.95rem; }
 
 /* Nav toggle (Base HTML header) */
 nav { margin-top: var(--space-4); }
