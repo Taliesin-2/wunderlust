@@ -57,7 +57,7 @@ table { border-collapse: collapse; border-spacing: 0; }
   --w-semibold: 600;
 
   --fs-h1: 2rem;
-  --fs-h2: 2rem;        /* bump for “Majorca” size on mobile */
+  --fs-h2: 2rem;        /* “Majorca” size on mobile */
   --fs-h3: 1.5rem;
   --fs-h4: 1rem;
   --fs-body: 1rem;
@@ -70,7 +70,7 @@ table { border-collapse: collapse; border-spacing: 0; }
   --space-5: 1.5rem;   
   --space-6: 2rem;     
 
-  --gutter: 1.5rem;     /* left/right padding to match mockup */
+  --gutter: 1.5rem;
 
   --radius: 10px;
   --shadow: 0 2px 8px rgba(0,0,0,.08);
@@ -125,18 +125,36 @@ q { color: #333; }
 blockquote { border-left: 4px solid var(--light); padding-left: var(--space-3); margin: var(--space-3) 0; color: #333; }
 
 /* =========================
+   Accessibility utilities
+   ========================= */
+/* Robust visually-hidden helper */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  clip-path: inset(50%) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+#skip, .skip-link { position: absolute; left: -9999px; top: -9999px; }
+#skip:focus, .skip-link:focus {
+  left: var(--gutter); top: var(--gutter);
+  background: var(--yellow); color: var(--black);
+  padding: var(--space-2) var(--space-3); border-radius: var(--radius); z-index: 1000;
+}
+
+/* =========================
    Layout wrappers
    ========================= */
 header, footer, main, #main-content article {
   width: min(100%, 1100px);
   margin-inline: auto;
   padding-inline: var(--gutter);
-}
-#skip, .skip-link { position: absolute; left: -9999px; top: -9999px; }
-#skip:focus, .skip-link:focus {
-  left: var(--gutter); top: var(--gutter);
-  background: var(--yellow); color: var(--black);
-  padding: var(--space-2) var(--space-3); border-radius: var(--radius); z-index: 1000;
 }
 
 /* =========================
@@ -177,6 +195,7 @@ header p {
   text-transform: uppercase;
   box-shadow: var(--shadow);
   cursor: pointer;
+  z-index: 2;
 }
 #menu-toggle input{ position: absolute; opacity:0; pointer-events:none; }
 #menu-toggle ul{ display:none; margin-top: var(--space-3); }
@@ -320,7 +339,7 @@ main picture { margin-block: var(--space-3); }
 }
 
 /* =========================
-   majorca/index patches (shared)
+   Shared patches
    ========================= */
 main dl { display: grid; gap: var(--space-3); margin-block: var(--space-4); }
 main dt { font-weight: var(--w-semibold); }
