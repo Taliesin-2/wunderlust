@@ -297,7 +297,7 @@ footer a { text-decoration: underline; }
 /* =========================
    Progressive enhancement
    ========================= */
-@media (min-width: 420px){
+@media (min-width: 428px){ /* iPhone 12 Pro Max width */
   #plan > div { grid-template-columns: repeat(2, 1fr); }
 }
 @media (prefers-reduced-motion: reduce){
@@ -321,7 +321,7 @@ footer a { text-decoration: underline; }
   fill: none;
   stroke-width: 1.5;
 }
-/* NEW: ensure <picture> stacks and fills width on mobile */
+/* ensure <picture> stacks and fills width on mobile */
 main#main picture { display: block; width: 100%; }
 main#main picture img { display: block; width: 100%; height: auto; }
 
