@@ -121,6 +121,9 @@ small { font-size: var(--fs-small); }
 strong, b { font-weight: var(--w-semibold); }
 em, i { font-style: italic; }
 
+q { color: #333; }
+blockquote { border-left: 4px solid var(--light); padding-left: var(--space-3); margin: var(--space-3) 0; color: #333; }
+
 /* =========================
    Accessibility utilities
    ========================= */
@@ -260,63 +263,92 @@ header p {
 #plan svg { fill: #fff; stroke: none; }
 
 /* =========================
-   Testimonials (new #testimonials wrapper)
+   Testimonials — new wrapper (#testimonials)
    ========================= */
 #testimonials { padding-block: var(--space-6); }
 #testimonials > h3 { margin-bottom: var(--space-4); }
 #testimonials > div { display: grid; grid-template-columns: 1fr; gap: var(--space-5); }
 #testimonials section { text-align: center; }
 #testimonials img {
-  width: clamp(96px, 28vw, 120px);
-  height: clamp(96px, 28vw, 120px);
+  width: clamp(110px, 30vw, 136px);
+  height: clamp(110px, 30vw, 136px);
   border-radius: 50%;
   object-fit: cover; margin: 0 auto var(--space-3);
   box-shadow: var(--shadow);
 }
-#testimonials h4 { text-transform: uppercase; letter-spacing: .04em; font-weight: var(--w-semibold); margin-bottom: var(--space-1); }
-#testimonials p { color: #666; margin: 0 0 var(--space-2); font-size: .95rem; }
-#testimonials q { display: block; font-style: italic; color: #444; max-width: 28ch; margin: 0 auto; line-height: 1.35; }
+#testimonials h4 {
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  font-weight: var(--w-semibold);
+  font-size: clamp(1.05rem, 3.4vw, 1.35rem);
+  line-height: 1.15;
+  max-width: 18ch;          /* encourage 2-line wrap */
+  margin: 0 auto var(--space-1);
+}
+#testimonials p {
+  color: #333;
+  margin: 0 0 var(--space-1);
+  font-size: .95rem;
+}
+#testimonials p strong { display: none; }  /* hide "Traveling From:" label */
+#testimonials q {
+  display: block;
+  font-style: italic;
+  color: #45484d;
+  max-width: 24ch;          /* comfy two-line quote */
+  margin: var(--space-1) auto 0;
+  line-height: 1.45;
+  font-size: 1rem;
+}
 
 /* =========================
-   Testimonials (legacy markup support)
-   For pages where <h2>Testimonials</h2> is followed by individual <article> items.
+   Testimonials — legacy markup support
+   (h2 + article items used in your page right now)
    ========================= */
 main h2 + article,
 main h2 + article ~ article {
   text-align: center;
   margin-block: var(--space-5);
 }
-main h2 + article img,
-main h2 + article ~ article img {
-  width: clamp(96px, 28vw, 120px);
-  height: clamp(96px, 28vw, 120px);
+main h2 + article h3,
+main h2 + article ~ article h3 {
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  font-weight: var(--w-semibold);
+  font-size: clamp(1.05rem, 3.4vw, 1.35rem);
+  line-height: 1.15;
+  max-width: 18ch;          /* encourage 2-line wrap */
+  margin: 0 auto var(--space-1);
+}
+main h2 + article h3 + img,
+main h2 + article ~ article h3 + img {
+  display: block;
+  width: clamp(110px, 30vw, 136px);
+  height: clamp(110px, 30vw, 136px);
   border-radius: 50%;
   object-fit: cover;
   margin: 0 auto var(--space-3);
   box-shadow: var(--shadow);
 }
-main h2 + article h3,
-main h2 + article ~ article h3 {
-  text-transform: uppercase;
-  letter-spacing: .04em;
-  font-weight: var(--w-semibold);
-  margin-bottom: var(--space-1);
-}
-main h2 + article p,
-main h2 + article ~ article p {
-  color: #666;
-  margin: 0 0 var(--space-2);
+main h2 + article h3 + img + p,
+main h2 + article ~ article h3 + img + p {
+  color: #333;              /* location */
+  margin: 0 0 var(--space-1);
   font-size: .95rem;
 }
+main h2 + article h3 + img + p strong,
+main h2 + article ~ article h3 + img + p strong { display: none; } /* hide label */
 main h2 + article blockquote,
 main h2 + article ~ article blockquote {
-  border: 0;                 /* remove left bar */
-  padding-left: 0;           /* remove extra inset */
+  border: 0;                 /* remove left rule */
+  padding: 0;
   font-style: italic;
-  color: #444;
-  max-width: 28ch;
-  margin: 0 auto;
-  line-height: 1.35;
+  color: #45484d;
+  max-width: 24ch;
+  margin: var(--space-1) auto 0;
+  line-height: 1.45;
+  font-size: 1rem;
+  text-align: center;
 }
 
 /* =========================
@@ -396,18 +428,14 @@ button[type="submit"]{
 }
 #mySubmit:focus-visible, button:focus-visible { box-shadow: var(--focus-ring); }
 
-/* =========================
-   Images
-   ========================= */
+/* Images */
 @media (max-width: 767px){
   main picture { display: block; width: 100%; }
   main picture img { display: block; width: 100%; height: auto; }
 }
 main picture { margin-block: var(--space-3); }
 
-/* =========================
-   Progressive enhancement
-   ========================= */
+/* Progressive enhancement */
 @media (min-width: 768px){ /* tablet and up */
   #plan > div { grid-template-columns: repeat(2, 1fr); }
 }
@@ -415,9 +443,7 @@ main picture { margin-block: var(--space-3); }
   * { animation: none !important; transition: none !important; }
 }
 
-/* =========================
-   Shared patches
-   ========================= */
+/* Shared patches */
 main dl { display: grid; gap: var(--space-3); margin-block: var(--space-4); }
 main dt { font-weight: var(--w-semibold); }
 main dd { margin: 0; display: flex; align-items: center; gap: var(--space-2); }
