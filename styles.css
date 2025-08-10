@@ -169,7 +169,7 @@ header > img { width: 120px; display: block; margin: 0 auto; }
 /* Brand header (when #logo precedes h1) */
 header #logo + h1 {
   font-weight: var(--w-semibold);
-  font-size: clamp(2rem, 7vw, 2.6rem); /* big “Wunderlust” */
+  font-size: clamp(2rem, 7vw, 2.6rem);
   line-height: 1.1;
   margin-top: var(--space-3);
 }
@@ -177,7 +177,7 @@ header p {
   text-align: left;
   margin-top: var(--space-2);
   font-size: 1rem;
-  max-width: 28ch; /* wrap like mockup */
+  max-width: 28ch;
 }
 
 /* Menu button */
@@ -185,7 +185,7 @@ header p {
 #menu-toggle label{
   position: absolute;
   right: 0;
-  top: -56px; /* lift into the top-right corner of header */
+  top: -56px;
   background: var(--yellow);
   color: var(--black);
   padding: var(--space-2) var(--space-5);
@@ -213,34 +213,30 @@ header p {
 #intro p { margin-bottom: var(--space-4); }
 
 /* =========================
-   Plan
+   Plan (mobile-first)
    ========================= */
 #plan {
-  /* full-bleed yellow band while content stays aligned to the page gutter */
   background: var(--yellow);
   padding-block: var(--space-5);
-  /* expand to viewport edges */
+  /* make the yellow band full-bleed on mobile */
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
-  /* keep inner padding matching the page gutter */
   padding-inline: var(--gutter);
 }
 #plan > h3 { margin-bottom: var(--space-4); }
 #plan > div {
   display: grid;
   gap: var(--space-3);
-  grid-template-columns: 1fr; /* stack on mobile */
+  grid-template-columns: 1fr;
 }
 #plan section {
   background: var(--teal);
   color: var(--black);
   border-radius: var(--radius);
   padding: var(--space-4);
-  border: 3px solid var(--white);          /* white border like mockup */
+  border: 3px solid var(--white);
   box-shadow: var(--shadow);
   text-align: center;
-
-  /* ensure consistent spacing / centering */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -249,19 +245,22 @@ header p {
 }
 #plan h4 {
   color: var(--black);
-  margin: 0;                               /* tight to top like mockup */
+  margin: 0;
   font-weight: var(--w-semibold);
-  text-transform: uppercase;               /* uppercase like mockup */
+  text-transform: uppercase;
   letter-spacing: .035em;
   font-size: 0.95rem;
   line-height: 1.1;
 }
-#plan img {
+/* icons inside #plan: support both <img> and inline <svg> */
+#plan img,
+#plan svg {
   display: block;
-  width: clamp(88px, 45vw, 128px);         /* big centered icons */
+  width: clamp(88px, 45vw, 128px);
   height: auto;
   margin: 0 auto;
 }
+#plan svg { fill: #fff; stroke: none; }
 
 /* =========================
    Testimonials
