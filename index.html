@@ -116,13 +116,35 @@
       </div>
     </section>
 
-    <h2>About Your Destination</h2>
-    <dl>
-      <dt>Size</dt><dd>1,405 miles squared</dd>
-      <dt>Elevation</dt><dd>4,741 feet</dd>
-      <dt>Location</dt><dd>Mediterranean</dd>
-      <dt>Population</dt><dd>923,608</dd>
-    </dl>
+    <!-- About Your Destination (scoped & safe) -->
+    <section id="about">
+      <h2>About Your Destination</h2>
+      <dl class="about-dl">
+        <dt>Size</dt>
+        <dd data-label="Size">
+          <img src="images/size.svg" alt="">
+          1,405 miles squared
+        </dd>
+
+        <dt>Elevation</dt>
+        <dd data-label="Elevation">
+          <img src="images/elevation.svg" alt="">
+          4,741 feet
+        </dd>
+
+        <dt>Location</dt>
+        <dd data-label="Location">
+          <img src="images/location.svg" alt="">
+          Mediterranean
+        </dd>
+
+        <dt>Population</dt>
+        <dd data-label="Population">
+          <img src="images/population.svg" alt="">
+          923,608
+        </dd>
+      </dl>
+    </section>
 
     <h2 id="contact">Contact Us</h2>
     <form action="https://wp.zybooks.com/form-viewer.php" method="POST">

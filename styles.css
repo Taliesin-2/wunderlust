@@ -164,7 +164,8 @@ header {
   padding-block: var(--space-4);
   background: linear-gradient(180deg, var(--teal) 0%, rgba(85,188,213,0.15) 100%);
 }
-header > img { width: 120px; display: block; margin: 0 auto; }
+/* make this match your <a id="logo"><img>… */
+header #logo img { width: 120px; display: block; margin: 0 auto; }
 
 /* Brand header (when #logo precedes h1) */
 header #logo + h1 {
@@ -302,86 +303,65 @@ header p {
 }
 
 /* =========================
-   Testimonials — legacy markup (your current HTML)
-   Enforce visual order with CSS Grid: IMG → NAME → LOCATION → QUOTE
+   ABOUT — strictly scoped, safe
    ========================= */
-main h2 + article,
-main h2 + article ~ article{
+#about{
+  background: var(--blue);
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  padding: var(--space-6) var(--gutter);
+}
+#about > h2{
+  color: #0f172a;
+  margin-bottom: var(--space-4);
+}
+#about .about-dl{
   display: grid;
-  grid-template-columns: 1fr;
-  grid-template-areas:
-    "img"
-    "name"
-    "loc"
-    "quote";
-  justify-items: center;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+}
+
+/* keep semantics, hide dt visually */
+#about .about-dl dt{
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0,0,0,0) !important;
+  clip-path: inset(50%) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* each dd: icon -> label (::before from data-label) -> value (text) */
+#about .about-dl dd{
   text-align: center;
-  gap: var(--space-1);
-  margin-block: var(--space-5);
-}
-
-/* Photo */
-main h2 + article img,
-main h2 + article ~ article img{
-  grid-area: img;
-  width: clamp(110px, 30vw, 136px);
-  height: clamp(110px, 30vw, 136px);
-  border-radius: 50%;
-  object-fit: cover;
-  margin: 0 auto var(--space-2);
-  box-shadow: var(--shadow);
-}
-
-/* Name */
-main h2 + article h3,
-main h2 + article ~ article h3{
-  grid-area: name;
-  text-transform: uppercase;
-  letter-spacing: .06em;
-  font-weight: var(--w-semibold);
-  font-size: clamp(1.05rem, 3.4vw, 1.35rem);
-  line-height: 1.15;
-  max-width: 18ch;
-  margin: 0 auto var(--space-1);
-}
-
-/* Location (hide label) */
-main h2 + article h3 + img + p,
-main h2 + article ~ article h3 + img + p{
-  grid-area: loc;
-  color: #333;
-  margin: 0 0 var(--space-1);
-  font-size: .95rem;
-}
-main h2 + article h3 + img + p strong,
-main h2 + article ~ article h3 + img + p strong{
-  display: none;
-}
-
-/* Quote */
-main h2 + article blockquote,
-main h2 + article ~ article blockquote{
-  grid-area: quote;
-  border: 0;
-  padding: 0;
-  font-style: italic;
-  color: #45484d;
-  max-width: 24ch;
-  margin: var(--space-1) auto 0;
-  line-height: 1.45;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .35rem;
+  color: #0f172a; /* dark text on blue like mock */
   font-size: 1rem;
 }
 
-/* =========================
-   About
-   ========================= */
-#about { padding-block: var(--space-5); background: var(--blue); color: var(--white); }
-#about > h3 { color: var(--white); margin-bottom: var(--space-4); }
-#about > div { display: grid; grid-template-columns: 1fr; gap: var(--space-4); }
-#about section { text-align: center; }
-#about img { width: 56px; margin: 0 auto var(--space-2); }
-#about h4 { color: var(--white); margin: 0 0 var(--space-1); }
-#about p { margin: 0; color: #eaf6ff; }
+#about .about-dl dd img{
+  display: block;
+  width: 64px;
+  height: 64px;
+  margin: 0 auto .4rem;
+  /* turn black SVGs white on blue */
+  filter: brightness(0) invert(1);
+}
+
+#about .about-dl dd::before{
+  content: attr(data-label);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  font-weight: var(--w-semibold);
+  margin-bottom: .05rem;
+}
 
 /* =========================
    Contact
@@ -411,22 +391,6 @@ legend { font-weight: var(--w-semibold); margin-bottom: var(--space-2); }
 .radio-input input:checked + .radio-control {
   outline: 6px solid rgba(155,38,176,.2);
   background: radial-gradient(var(--purple) 0 45%, transparent 46% 100%);
-}
-
-/* Custom select caret */
-.custom-select { position: relative; }
-.custom-select select {
-  appearance: none;
-  background-image:
-    linear-gradient(45deg, transparent 50%, var(--purple) 50%),
-    linear-gradient(135deg, var(--purple) 50%, transparent 50%),
-    linear-gradient(to right, transparent, transparent);
-  background-position:
-    calc(100% - 22px) 55%,
-    calc(100% - 16px) 55%,
-    100% 0;
-  background-size: 6px 6px, 6px 6px, 2.5rem 100%;
-  background-repeat: no-repeat;
 }
 
 /* Buttons */
@@ -462,16 +426,4 @@ main picture { margin-block: var(--space-3); }
 }
 @media (prefers-reduced-motion: reduce){
   * { animation: none !important; transition: none !important; }
-}
-
-/* Shared patches */
-main dl { display: grid; gap: var(--space-3); margin-block: var(--space-4); }
-main dt { font-weight: var(--w-semibold); }
-main dd { margin: 0; display: flex; align-items: center; gap: var(--space-2); }
-
-main article img {
-  border-radius: 50%;
-  width: 120px; height: 120px; object-fit: cover;
-  box-shadow: var(--shadow);
-  margin-block: var(--space-2);
 }
