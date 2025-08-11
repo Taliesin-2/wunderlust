@@ -179,14 +179,14 @@ main picture{margin-block:var(--space-3)}
    Contact — scoped to form after #contact
    ========================= */
 #contact + form{ padding-block:var(--space-6); }
-#contact + form .form-required{ font-size:.9rem; font-style:italic; color:#666; margin-left:.5rem; }
 
+/* stack fields */
 #contact + form fieldset{
   border:0; padding:0; margin:0 0 var(--space-4);
   display:grid; gap:var(--space-3);
 }
 
-/* labels (UPPERCASE) */
+/* labels */
 #contact + form label{
   font-weight:var(--w-semibold);
   text-transform:uppercase;
@@ -196,12 +196,15 @@ main picture{margin-block:var(--space-3)}
 }
 #contact + form .required{ color:var(--purple); margin-left:.25ch; }
 
-/* text inputs + selects */
+/* text inputs + selects — fully fluid */
 #contact + form input[type="text"],
 #contact + form input[type="email"],
 #contact + form input[type="tel"],
 #contact + form select{
+  box-sizing:border-box;
   width:100%;
+  max-width:100%;
+  min-width:0;
   padding:.85rem 1rem;
   border:var(--field-border);
   border-radius:6px;
@@ -226,7 +229,7 @@ main picture{margin-block:var(--space-3)}
   background-repeat: no-repeat;
 }
 
-/* ---- radios: pattern A — input + label ---- */
+/* radios: input + label */
 #contact + form input[type="radio"]{
   position:absolute; opacity:0; width:0; height:0;
 }
@@ -243,24 +246,7 @@ main picture{margin-block:var(--space-3)}
   content:""; position:absolute; left:7px; top:50%; transform:translateY(-50%);
   width:14px; height:14px; border-radius:50%; background:var(--purple);
 }
-#contact + form input[type="radio"]:focus-visible + label::before{
-  box-shadow:var(--focus-ring);
-}
-
-/* ---- radios: pattern B — .radio wrapper (input + .radio-control + .radio-label) ---- */
-#contact + form .radio{ display:flex; align-items:center; gap:.6rem; }
-#contact + form .radio input{ position:absolute; opacity:0; inset:0; cursor:pointer; }
-#contact + form .radio .radio-control{
-  width:30px; height:30px; border-radius:50%;
-  border:2px solid var(--purple); display:inline-block; position:relative;
-}
-#contact + form .radio input:checked + .radio-control{
-  outline:6px solid rgba(155,38,176,.20);
-  background: radial-gradient(var(--purple) 0 45%, transparent 46% 100%);
-}
-#contact + form .radio .radio-label{
-  text-transform:none; letter-spacing:0; font-weight:var(--w-regular);
-}
+#contact + form input[type="radio"]:focus-visible + label::before{ box-shadow:var(--focus-ring); }
 
 /* submit */
 #contact + form button[type="submit"],
