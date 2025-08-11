@@ -256,7 +256,7 @@ main picture { margin-block: var(--space-3); }
 #plan svg { fill: #fff; stroke: none; }
 
 /* =========================
-   Testimonials — new #testimonials block
+   Testimonials — mobile
    ========================= */
 #testimonials { padding-block: var(--space-6); }
 #testimonials > h3 { margin-bottom: var(--space-4); }
@@ -275,7 +275,7 @@ main picture { margin-block: var(--space-3); }
   font-weight: var(--w-semibold);
   font-size: clamp(1.05rem, 3.4vw, 1.35rem);
   line-height: 1.15;
-  max-width: 18ch;
+  max-width: 18ch;          /* encourage 2-line wrap */
   margin: 0 auto var(--space-1);
 }
 #testimonials p {
@@ -283,26 +283,26 @@ main picture { margin-block: var(--space-3); }
   margin: 0 0 var(--space-1);
   font-size: .95rem;
 }
-#testimonials p strong { display: none; }
+#testimonials p strong { display: none; }  /* hide "Traveling From:" label */
 #testimonials q {
   display: block;
   font-style: italic;
   color: #45484d;
-  max-width: 24ch;
+  max-width: 24ch;          /* comfy two-line quote */
   margin: var(--space-1) auto 0;
   line-height: 1.45;
   font-size: 1rem;
 }
 
 /* =========================
-   About (placeholder styles for your current dl)
+   About (current dl styles)
    ========================= */
 main dl { display: grid; gap: var(--space-3); margin-block: var(--space-4); }
 main dt { font-weight: var(--w-semibold); }
 main dd { margin: 0; display: flex; align-items: center; gap: var(--space-2); }
 
 /* =========================
-   Contact
+   Contact (unchanged here)
    ========================= */
 #contact { padding-block: var(--space-6); }
 #contact h3 { margin-bottom: var(--space-2); }
@@ -316,30 +316,8 @@ input[type="text"], input[type="email"], input[type="tel"], select {
   font-family: var(--ff-body); font-size: var(--fs-body);
 }
 input::placeholder { color: #888; }
-
-/* Radio group (kept simple for now) */
 fieldset { border: 0; padding: 0; margin: 0; }
 legend { font-weight: var(--w-semibold); margin-bottom: var(--space-2); }
-
-/* Buttons */
-#mySubmit,
-input[type="submit"],
-button,
-button[type="submit"]{
-  display: inline-block;
-  margin-top: var(--space-4);
-  background: var(--purple);
-  color: var(--white);
-  border: none;
-  padding: .9rem 1.5rem;
-  border-radius: 8px;
-  font-weight: var(--w-semibold);
-  letter-spacing: .04em;
-  text-transform: uppercase;
-  cursor: pointer;
-  box-shadow: var(--shadow);
-}
-#mySubmit:focus-visible, button:focus-visible { box-shadow: var(--focus-ring); }
 
 /* Images inside testimonials articles (legacy safety) */
 main article img {
@@ -350,11 +328,11 @@ main article img {
 }
 
 /* =========================
-   Tablet and up (THE NEW BITS)
+   Tablet and up — TABLET TWEAKS
    ========================= */
 @media (min-width: 768px){
 
-  /* Header grid like the mock */
+  /* Header grid like mock */
   header{
     display: grid;
     grid-template-columns: auto 1fr;
@@ -389,14 +367,13 @@ main article img {
     font-weight: var(--w-semibold);
     box-shadow: var(--shadow);
   }
-  /* highlight current section like the mock */
   #menu-toggle ul li.active a,
   #menu-toggle ul li:first-child a{
     background: var(--yellow);
     border-color: var(--yellow);
   }
 
-  /* Intro gallery: 2-up + 1 spanning */
+  /* Intro gallery: 2-up top, wide bottom */
   .intro-gallery{
     display: grid;
     grid-template-columns: repeat(2, minmax(0,1fr));
@@ -406,8 +383,17 @@ main article img {
     grid-column: 1 / -1;
   }
 
-  /* Plan tiles in two columns on tablet */
+  /* Plan tiles in two columns and slightly larger icons */
   #plan > div{ grid-template-columns: repeat(2, 1fr); }
+  #plan img, #plan svg{ width: clamp(120px, 22vw, 160px); }  /* bump icon size */
+
+  /* Testimonials in a 2×2 grid, larger avatars */
+  #testimonials > div{
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-6) var(--space-6);
+  }
+  #testimonials section{ max-width: 360px; margin-inline: auto; }
+  #testimonials img{ width: clamp(128px, 18vw, 152px); height: clamp(128px, 18vw, 152px); }
 }
 
 /* Reduced motion */
