@@ -20,7 +20,7 @@
         <input type="checkbox" id="toggle" name="toggle">
         <label for="toggle">Menu</label>
         <ul>
-          <li><a href="#">Destinations</a></li>
+          <li class="active"><a href="#">Destinations</a></li>
           <li><a href="#">Inspirations</a></li>
           <li><a href="#">Special</a></li>
           <li><a href="#contact">Contact Us</a></li>
@@ -33,26 +33,29 @@
     <h2>Majorca</h2>
     <p>Imagine an island with turquoise blue waters, secret coves, soft golden sands, lush green foliage, rugged mountains, picturesque villages and a vibrant capital city. The island and its capital, Palma, are overflowing with character, while its beaches are famous all around the world, making it one of the most sought-after summer destinations.</p>
 
-    <picture>
-      <source srcset="images/majorca-waves-L.png" media="(min-width: 1024px)">
-      <source srcset="images/majorca-waves-M.png" media="(min-width: 780px)">
-      <source srcset="images/majorca-waves-S.png" media="(min-width: 320px)">
-      <img src="images/majorca-waves-S.png" alt="Waves in Majorca">
-    </picture>
+    <!-- intro gallery wrapper added for tablet grid -->
+    <div class="intro-gallery">
+      <picture>
+        <source srcset="images/majorca-waves-L.png" media="(min-width: 1024px)">
+        <source srcset="images/majorca-waves-M.png" media="(min-width: 780px)">
+        <source srcset="images/majorca-waves-S.png" media="(min-width: 320px)">
+        <img src="images/majorca-waves-S.png" alt="Waves in Majorca">
+      </picture>
 
-    <picture>
-      <source srcset="images/majorca-beach-L.png" media="(min-width: 1024px)">
-      <source srcset="images/majorca-beach-M.png" media="(min-width: 780px)">
-      <source srcset="images/majorca-beach-S.png" media="(min-width: 320px)">
-      <img src="images/majorca-beach-S.png" alt="Beach in Majorca">
-    </picture>
+      <picture>
+        <source srcset="images/majorca-beach-L.png" media="(min-width: 1024px)">
+        <source srcset="images/majorca-beach-M.png" media="(min-width: 780px)">
+        <source srcset="images/majorca-beach-S.png" media="(min-width: 320px)">
+        <img src="images/majorca-beach-S.png" alt="Beach in Majorca">
+      </picture>
 
-    <picture>
-      <source srcset="images/majorca-cove-L.png" media="(min-width: 1024px)">
-      <source srcset="images/majorca-cove-M.png" media="(min-width: 780px)">
-      <source srcset="images/majorca-cove-S.png" media="(min-width: 320px)">
-      <img src="images/majorca-cove-S.png" alt="Cove in Majorca">
-    </picture>
+      <picture>
+        <source srcset="images/majorca-cove-L.png" media="(min-width: 1024px)">
+        <source srcset="images/majorca-cove-M.png" media="(min-width: 780px)">
+        <source srcset="images/majorca-cove-S.png" media="(min-width: 320px)">
+        <img src="images/majorca-cove-S.png" alt="Cove in Majorca">
+      </picture>
+    </div>
 
     <!-- Plan -->
     <section id="plan">
@@ -116,83 +119,46 @@
       </div>
     </section>
 
-    <!-- About Your Destination -->
-    <section id="about">
-      <h2>About Your Destination</h2>
-      <dl class="about-dl">
-        <dt>Size</dt>
-        <dd data-label="Size">
-          <img src="images/size.svg" alt="">
-          1,405 miles squared
-        </dd>
+    <h2>About Your Destination</h2>
+    <dl>
+      <dt>Size</dt><dd>1,405 miles squared</dd>
+      <dt>Elevation</dt><dd>4,741 feet</dd>
+      <dt>Location</dt><dd>Mediterranean</dd>
+      <dt>Population</dt><dd>923,608</dd>
+    </dl>
 
-        <dt>Elevation</dt>
-        <dd data-label="Elevation">
-          <img src="images/elevation.svg" alt="">
-          4,741 feet
-        </dd>
-
-        <dt>Location</dt>
-        <dd data-label="Location">
-          <img src="images/location.svg" alt="">
-          Mediterranean
-        </dd>
-
-        <dt>Population</dt>
-        <dd data-label="Population">
-          <img src="images/population.svg" alt="">
-          923,608
-        </dd>
-      </dl>
-    </section>
-
-    <!-- Contact -->
-    <h2 id="contact">Contact Us <span class="form-required">* required</span></h2>
+    <h2 id="contact">Contact Us</h2>
     <form action="https://wp.zybooks.com/form-viewer.php" method="POST">
-      <fieldset class="pi">
-        <legend class="sr-only">Personal Information</legend>
+      <fieldset>
+        <legend>Personal Information</legend>
+        <label for="first-name">First Name</label>
+        <input type="text" id="first-name" name="first-name" placeholder="Enter first name" autocomplete="given-name" required>
 
-        <label for="first-name">First Name<span class="required">*</span></label>
-        <input type="text" id="first-name" name="first-name" placeholder="First Name" autocomplete="given-name" required>
-
-        <label for="last-name">Last Name<span class="required">*</span></label>
-        <input type="text" id="last-name" name="last-name" placeholder="Last Name" autocomplete="family-name" required>
+        <label for="last-name">Last Name</label>
+        <input type="text" id="last-name" name="last-name" placeholder="Enter last name" autocomplete="family-name" required>
       </fieldset>
 
-      <fieldset class="cm">
-        <legend>Contact Method<span class="required">*</span></legend>
+      <fieldset>
+        <legend>Contact Method</legend>
+        <label for="contact-method">Preferred Method</label>
+        <select id="contact-method" name="contact-method" aria-describedby="contact-help">
+          <option value="email">Email</option>
+          <option value="text">Text</option>
+          <option value="phone">Phone</option>
+        </select>
+        <small id="contact-help">Select how you would like us to contact you.</small>
 
-        <label class="radio">
-          <input type="radio" name="contactPref" id="prefEmail" value="email" required checked>
-          <span class="radio-control"></span>
-          <span class="radio-label">Email</span>
-        </label>
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" placeholder="Enter Email" autocomplete="email">
 
-        <label class="radio">
-          <input type="radio" name="contactPref" id="prefText" value="text">
-          <span class="radio-control"></span>
-          <span class="radio-label">Text</span>
-        </label>
-
-        <label class="radio">
-          <input type="radio" name="contactPref" id="prefPhone" value="phone">
-          <span class="radio-control"></span>
-          <span class="radio-label">Phone</span>
-        </label>
-
-        <label for="email">Email Address<span class="required">*</span></label>
-        <input type="email" id="email" name="email" placeholder="Email Address" autocomplete="email" required>
-
-        <label for="phone">Phone Number<span class="required">*</span></label>
-        <input type="tel" id="phone" name="phone" placeholder="Phone Number" autocomplete="tel" required>
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" name="phone" placeholder="Enter telephone number" autocomplete="tel">
       </fieldset>
 
-      <fieldset class="tp">
-        <legend class="sr-only">Travel Preferences</legend>
-
-        <label for="destination">Destination<span class="required">*</span></label>
-        <select id="destination" name="destination" required>
-          <option value="" disabled selected>Choose an Option</option>
+      <fieldset>
+        <legend>Travel Preferences</legend>
+        <label for="destination">Destination</label>
+        <select id="destination" name="destination">
           <option value="barcelona">Barcelona</option>
           <option value="granada">Granada</option>
           <option value="ibiza">Ibiza</option>
@@ -203,9 +169,8 @@
           <option value="valencia">Valencia</option>
         </select>
 
-        <label for="season">Travel Time<span class="required">*</span></label>
-        <select id="season" name="season" required>
-          <option value="" disabled selected>Choose an Option</option>
+        <label for="season">Travel Time</label>
+        <select id="season" name="season">
           <option value="fall">Fall</option>
           <option value="winter">Winter</option>
           <option value="spring">Spring</option>
@@ -214,7 +179,7 @@
         </select>
       </fieldset>
 
-      <button type="submit" class="btn-submit">Submit</button>
+      <button type="submit">Submit</button>
     </form>
   </main>
 
